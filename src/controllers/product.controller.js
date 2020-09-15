@@ -1,29 +1,53 @@
 //Acciones para productos
-export const getProducts= (req, res)=>{
+// controlador para mostrar los datos en formato JSON
+import Product from '../models/product.model';
 
-    res.json('getProducts')
+
+
+export const getProducts= async (req, res)=>{
+
+    const products= await Product.find()
+    res.status(200).json({
+        products,
+    });
 };
 
 
-export const getProduct= (req, res)=>{
+export const getProduct= async (req, res)=>{
 
-    res.json('get single Product')
-
-
-};
-export const createProduct= (req, res)=>{
-
-    res.json('create Product')
-
-};
-export const updateProduct= (req, res)=>{
-
-    res.json('update Product')
+    const product= await Product.findById(req.params.productId);
+    res.status(200).json({
+        product,
+    });
 
 };
 
-export const deleteProduct= (req, res)=>{
 
-    res.json('delete product')
+
+export const createProduct= async (req, res)=>{
+
+    const newProduct = new Product(req.body)
+    const product = await newProduct.save()
+
+    res.status(200).json({
+        product,
+    });
+
+};
+export const updateProduct= async (req, res)=>{
+
+    const productUpdated = await Product.findByIdAndUpdate(req.params.productId, req.body, {new:true})
+    
+    res.status(200).json({
+        productUpdated,
+    });
+};
+
+export const deleteProduct= async (req, res)=>{
+
+    const deleteproduct= await Product.findByIdAndDelete(req.params.productId);
+    res.status(200).json({
+        deleteproduct,
+    });
 
 };
