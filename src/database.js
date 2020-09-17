@@ -6,7 +6,7 @@ mongoose
         //opciones de biblioteca 
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify:true
+        useFindAndModify: false
     }) // direccion
     .then((db) => console.log('Db is connected')) //saber si te conectas
     .catch((err) => console.error(err))
