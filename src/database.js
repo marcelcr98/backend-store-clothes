@@ -10,3 +10,5 @@ mongoose
     }) // direccion
     .then((db) => console.log('Db is connected')) //saber si te conectas
     .catch((err) => console.error(err))
+
+    //para heroku añadir la URL de la BD
